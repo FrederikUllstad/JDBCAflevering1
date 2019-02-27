@@ -8,12 +8,12 @@ import java.sql.SQLException;
 import java.util.List;
 
 //TODO Rename class
-public class UserDAOImpls134000 implements IUserDAO {
+public class UserDAOImpls185018 implements IUserDAO {
     //TODO Make a connection to the database
     private Connection createConnection() throws DALException {
         try {
-            return DriverManager.getConnection("jdbc:mysql://ec2-52-30-211-3.eu-west-1.compute.amazonaws.com/chbu?"
-                    + "user=chbu&password=4thVbCaMOxnXi3aJ4");
+            return DriverManager.getConnection("jdbc:mysql://ec2-52-30-211-3.eu-west-1.compute.amazonaws.com/s185018?"
+                    + "user=s185018&password=ZDt6BE2DofFjsZVyjmdij");
         } catch (SQLException e) {
             throw new DALException(e.getMessage());
         }
@@ -22,6 +22,16 @@ public class UserDAOImpls134000 implements IUserDAO {
     @Override
     public UserDTO getUser(int userId) throws DALException {
         //TODO Implement this
+        Connection connection = createConnection();
+        UserDTO user = new UserDTO();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM aflevering_1 WHERE UserID = " + userId);
+            resultSet.first();
+            user.setUserId(resultSet.getInt("UserID"));
+            user.setUserName(resultSet.getString("Username"));
+            user.setIni(resultSet.getString("Initials"));
+            user.setRoles((List<String>)resultSet.getObject("Roles"));
         Connection c = createConnection();
 
 
