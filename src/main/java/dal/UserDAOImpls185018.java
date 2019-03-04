@@ -35,12 +35,8 @@ public class UserDAOImpls185018 implements IUserDAO {
             e.printStackTrace();
         }
 
-
-        //TODO: Make a user from the resultset
-        UserDTO user = new UserDTO();
-
         try {
-            c.close();
+            connection.close();
         } catch (SQLException e) {
             throw new DALException(e.getMessage());
         }
