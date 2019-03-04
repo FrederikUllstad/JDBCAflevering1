@@ -2,9 +2,7 @@ package dal;
 
 import dto.UserDTO;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 //TODO Rename class
@@ -24,6 +22,7 @@ public class UserDAOImpls185018 implements IUserDAO {
         //TODO Implement this
         Connection connection = createConnection();
         UserDTO user = new UserDTO();
+        Connection c = createConnection();
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM aflevering_1 WHERE UserID = " + userId);
@@ -32,7 +31,7 @@ public class UserDAOImpls185018 implements IUserDAO {
             user.setUserName(resultSet.getString("Username"));
             user.setIni(resultSet.getString("Initials"));
             user.setRoles((List<String>)resultSet.getObject("Roles"));
-        Connection c = createConnection();
+
 
 
         //TODO: Make a user from the resultset
