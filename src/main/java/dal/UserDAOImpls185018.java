@@ -30,8 +30,10 @@ public class UserDAOImpls185018 implements IUserDAO {
             user.setUserId(resultSet.getInt("UserID"));
             user.setUserName(resultSet.getString("Username"));
             user.setIni(resultSet.getString("Initials"));
-            user.setRoles((List<String>)resultSet.getObject("Roles"));
-
+            user.setRoles((List<String>) resultSet.getObject("Roles"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
         //TODO: Make a user from the resultset
