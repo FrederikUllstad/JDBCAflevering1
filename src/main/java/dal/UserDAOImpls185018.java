@@ -20,13 +20,12 @@ public class UserDAOImpls185018 implements IUserDAO {
 
     @Override
     public UserDTO getUser(int userId) throws DALException {
-        //TODO Implement this
         Connection connection = createConnection();
         UserDTO user = new UserDTO();
         Connection c = createConnection();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM aflevering_1 WHERE UserID = " + userId);
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM aflevering1 WHERE UserID = " + userId);
             resultSet.first();
             user.setUserId(resultSet.getInt("UserID"));
             user.setUserName(resultSet.getString("Username"));
@@ -69,9 +68,9 @@ public class UserDAOImpls185018 implements IUserDAO {
     public void createUser(UserDTO user) throws DALException {
         Connection connection = createConnection();
         int id = 1;
-        String name = "Ny bruger";
-        String ini = "NB";
-        String roles = "Brugerrole";
+        String name = "BROR ULLSTAD";
+        String ini = "BU";
+        String roles = "BROR";
         try {
             connection.prepareStatement("INSERT INTO aflevering1(UserID, Username, Initials, Roles) values(" + id +
                     ", " + name + ", " + ini + ", " + roles + ");");
@@ -84,15 +83,15 @@ public class UserDAOImpls185018 implements IUserDAO {
     public void updateUser(UserDTO user) throws DALException {
         Connection connection = createConnection();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE aflevering_1 SET Username = ? WHERE UserID = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE aflevering1 SET Username = ? WHERE UserID = ?");
             preparedStatement.setString(1, user.getIni());
             preparedStatement.setInt(2, user.getUserId());
 
-            preparedStatement = connection.prepareStatement("UPDATE aflevering_1 SET Initials = ? WHERE UserID = ?");
+            preparedStatement = connection.prepareStatement("UPDATE aflevering1 SET Initials = ? WHERE UserID = ?");
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setInt(2, user.getUserId());
 
-            preparedStatement = connection.prepareStatement("UPDATE aflevering_1 SET Roles = ? WHERE UserID = ?");
+            preparedStatement = connection.prepareStatement("UPDATE aflevering1 SET Roles = ? WHERE UserID = ?");
             preparedStatement.setString(1, String.valueOf(user.getRoles()));
             preparedStatement.setInt(2, user.getUserId());
 
@@ -106,7 +105,7 @@ public class UserDAOImpls185018 implements IUserDAO {
     public void deleteUser(int userId) throws DALException {
         Connection connection = createConnection();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM aflevering_1 WHERE UserID = " + userId);
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM aflevering1 WHERE UserID = " + userId);
             preparedStatement.executeUpdate();
             connection.close();
 
