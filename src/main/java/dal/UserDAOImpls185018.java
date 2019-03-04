@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 public class UserDAOImpls185018 implements IUserDAO {
 
     private Connection createConnection() throws DALException {
@@ -22,7 +23,6 @@ public class UserDAOImpls185018 implements IUserDAO {
     public UserDTO getUser(int userId) throws DALException {
         Connection connection = createConnection();
         UserDTO user = new UserDTO();
-        Connection c = createConnection();
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM aflevering1 WHERE UserID = " + userId);
