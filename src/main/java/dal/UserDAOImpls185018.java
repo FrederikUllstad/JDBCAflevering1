@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class UserDAOImpls185018 implements IUserDAO {
 
     private Connection createConnection() throws DALException {
@@ -103,11 +102,10 @@ public class UserDAOImpls185018 implements IUserDAO {
 
     @Override
     public void deleteUser(int userId) throws DALException {
-        Connection connection = createConnection();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM aflevering1 WHERE UserID = " + userId);
-            preparedStatement.executeUpdate();
-            connection.close();
+
+        try {Connection connection = createConnection();
+            Statement statement = connection.createStatement();
+            statement.execute("DELETE FROM aflevering1 WHERE UserID = " + userId);
 
         } catch (SQLException e) {
             throw new DALException(e.getMessage());
